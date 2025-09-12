@@ -1,5 +1,7 @@
 #Permet de visualiser les images d'un dossier une par une, avec la possibilité de les copier dans un autre dossier en appuyant sur la touche ESPACE.
 
+#test
+
 import os
 import cv2
 import shutil
