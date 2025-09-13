@@ -1,6 +1,13 @@
 # Environnements virtuels
 venv/
 .venv/
+build/
+
+# Fichiers
+dev.py
+Launcher.spec
+run_launcher.py
+run_launcher.spec
 
 # Fichiers Python compilés
 __pycache__/

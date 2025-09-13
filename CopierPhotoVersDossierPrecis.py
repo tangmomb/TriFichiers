@@ -46,7 +46,7 @@ def main():
 
     total_images = len(images)
     print(f"{total_images} images trouvées.")
-    print("Contrôles : [ESPACE] = Copier, [A] = Suivant, [Q] = Quitter")
+    print("Contrôles : [ESPACE] = Déplacer, [A] = Suivant, [Q] = Quitter")
 
     cv2.namedWindow('Image Viewer', cv2.WINDOW_NORMAL)
     cv2.resizeWindow('Image Viewer', 1000, 1000)
