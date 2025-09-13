@@ -1,12 +1,9 @@
-#Permet de visualiser les images d'un dossier une par une, avec la possibilité de les copier dans un autre dossier en appuyant sur la touche ESPACE.
-
-#test2
-
 import os
 import cv2
 import shutil
 import numpy as np
 from tqdm import tqdm
+import FreeSimpleGUI as sg
 
 def resize_with_padding(img, size=1000):
     h, w = img.shape[:2]
@@ -27,14 +24,14 @@ def resize_with_padding(img, size=1000):
     return canvas
 
 def main():
-    source_dir = input("Chemin du dossier contenant les images : ").strip()
-    dest_dir = input("Chemin du dossier de destination : ").strip()
+    source_dir = sg.popup_get_text("Chemin du dossier contenant les images :")
+    dest_dir = sg.popup_get_text("Chemin du dossier de destination :")
 
     if not os.path.isdir(source_dir):
-        print("Erreur : le dossier source n'existe pas.")
+        sg.popup("Erreur : le dossier source n'existe pas.")
         return
     if not os.path.isdir(dest_dir):
-        print("Le dossier de destination n'existe pas, création...")
+        sg.popup("Le dossier de destination n'existe pas, création...")
         os.makedirs(dest_dir)
 
     valid_ext = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.webp')
