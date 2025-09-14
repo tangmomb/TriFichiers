@@ -1,4 +1,0 @@
-opencv-python
-Send2Trash
-numpy
-tqdm
