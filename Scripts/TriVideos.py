@@ -2,6 +2,7 @@ import os
 import cv2
 import glob
 import send2trash
+import FreeSimpleGUI as sg
 
 def get_video_files(folder):
     extensions = ('*.mp4', '*.mov', '*.avi', '*.mkv')
@@ -61,13 +62,13 @@ def play_video_with_controls(video_path):
     return 'keep'
 
 def main():
-    folder = input("Entrez le chemin du dossier contenant les vidéos : ").strip()
+    folder = sg.popup_get_text("Entrez le chemin du dossier contenant les vidéos : ").strip()
     if not os.path.isdir(folder):
-        print("Chemin invalide.")
+        sg.popup("Chemin invalide.")
         return
 
     video_files = get_video_files(folder)
-    print(f"{len(video_files)} vidéos trouvées.")
+    sg.popup(f"{len(video_files)} vidéos trouvées.\nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter")
 
     for video_path in video_files:
         print(f"\nLecture de : {os.path.basename(video_path)}")

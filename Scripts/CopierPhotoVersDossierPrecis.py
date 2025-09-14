@@ -42,7 +42,7 @@ def main():
         return
 
     total_images = len(images)
-    sg.popup(f"{total_images} images trouvées. \nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[Q] = Quitter")
+    sg.popup(f"{total_images} images trouvées. \nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter")
 
     cv2.namedWindow('Image Viewer', cv2.WINDOW_NORMAL)
     cv2.resizeWindow('Image Viewer', 1000, 1000)
@@ -70,7 +70,7 @@ def main():
                 elif key == ord('a') or key == ord('A'):
                     print(f"Passage à la suivante : {img_name}")
                     break
-                elif key == ord('q') or key == ord('Q'):
+                elif key == 27:  # ESC:
                     print("Sortie du programme...")
                     cv2.destroyAllWindows()
                     return
@@ -78,7 +78,7 @@ def main():
             pbar.update(1)
 
     cv2.destroyAllWindows()
-    print("Toutes les images ont été affichées.")
+    sg.popup("Toutes les images ont été affichées.")
 
 if __name__ == "__main__":
     main()

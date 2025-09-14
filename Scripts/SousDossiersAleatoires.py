@@ -1,10 +1,11 @@
 import os
 import random
 import shutil
+import FreeSimpleGUI as sg
 
 def randomize_files_in_subfolders(root_folder, num_subfolders=5, max_depth=3):
     if not os.path.isdir(root_folder):
-        print("Le dossier spécifié n'existe pas.")
+        sg.popup("Le dossier spécifié n'existe pas.")
         return
 
     # Récupérer tous les fichiers dans le dossier racine et ses sous-dossiers
@@ -51,10 +52,10 @@ def randomize_files_in_subfolders(root_folder, num_subfolders=5, max_depth=3):
         shutil.move(src, dest)
         print(f"Déplacé : {file} -> {dest_folder}")
 
-    print("Opération terminée.")
+    sg.popup("Opération terminée.")
 
 if __name__ == "__main__":
-    folder_to_randomize = input("Entrez le chemin du dossier racine : ").strip()
-    num_folders = int(input("Combien de sous-dossiers créer ? (ex: 10) : ").strip())
-    depth = int(input("Profondeur max des sous-dossiers ? (ex: 3) : ").strip())
+    folder_to_randomize = sg.popup_get_text("Entrez le chemin du dossier racine : ").strip()
+    num_folders = int(sg.popup_get_text("Combien de sous-dossiers créer ? (ex: 10) : ").strip())
+    depth = int(sg.popup_get_text("Profondeur max des sous-dossiers ? (ex: 3) : ").strip())
     randomize_files_in_subfolders(folder_to_randomize, num_folders, depth)

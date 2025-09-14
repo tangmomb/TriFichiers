@@ -86,6 +86,6 @@ def flatten_and_categorize(root_folder):
             print(f"Impossible de supprimer {dirpath}: {e}")
 
 if __name__ == "__main__":
-    folder_to_flatten = input("Entrez le chemin du dossier à analyser : ").strip()
+    folder_to_flatten = sg.popup_get_text("Entrez le chemin du dossier à analyser : ").strip()
     flatten_and_categorize(folder_to_flatten)
     print("Opération terminée.")

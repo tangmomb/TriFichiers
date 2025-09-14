@@ -1,5 +1,6 @@
 import os
 import datetime
+import FreeSimpleGUI as sg
 
 def trouver_fichiers_modifies(folder_path, date_cible_str):
     # Convertir la date cible en objet datetime.date
@@ -16,18 +17,18 @@ def trouver_fichiers_modifies(folder_path, date_cible_str):
                 if modif_date == date_cible:
                     fichiers_trouves.append(chemin_complet)
             except Exception as e:
-                print(f"Erreur avec {chemin_complet} : {e}")
+                sg.popup(f"Erreur avec {chemin_complet} : {e}")
 
     return fichiers_trouves
 
 if __name__ == "__main__":
-    dossier = input("Chemin du dossier à scanner : ").strip()
-    date_voulue = input("Date ? : jj/mm/aaaa : ").strip()  # format JJ/MM/AAAA
+    dossier = sg.popup_get_text("Chemin du dossier à scanner : ").strip()
+    date_voulue = sg.popup_get_text("Date ? : jj/mm/aaaa : ").strip()  # format JJ/MM/AAAA
 
     resultats = trouver_fichiers_modifies(dossier, date_voulue)
 
-    print(f"\nFichiers modifiés le {date_voulue} :")
+    sg.popup(f"\nFichiers modifiés le {date_voulue} :")
     for chemin in resultats:
-        print(chemin)
+        sg.popup(chemin)
 
-    print(f"\nTotal : {len(resultats)} fichier(s) trouvé(s).")
+    sg.popup(f"\nTotal : {len(resultats)} fichier(s) trouvé(s).")

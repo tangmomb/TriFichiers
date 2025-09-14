@@ -12,4 +12,4 @@ REM Lancer le script Python dans le même dossier
 python "%BASE_DIR%\Launcher.py"
 
 REM Laisser la console ouverte pour voir les inputs
-pause
+exit

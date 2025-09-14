@@ -1,7 +1,8 @@
 import os
+import FreeSimpleGUI as sg
 
 # Dossier à analyser
-FOLDER_PATH = input("Entrez le chemin du dossier à analyser : ").strip()
+FOLDER_PATH = sg.popup_get_text("Entrez le chemin du dossier à analyser : ").strip()
 
 # Extensions des fichiers images et vidéos (en minuscules)
 IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
@@ -32,5 +33,5 @@ def sizeof_fmt(num, suffix='B'):
         num /= 1024.0
     return f"{num:.2f} Pi{suffix}"
 
-print(f"Total images size: {sizeof_fmt(total_size_images)}")
-print(f"Total videos size: {sizeof_fmt(total_size_videos)}")
+sg.popup(f"Total images size: {sizeof_fmt(total_size_images)}")
+sg.popup(f"Total videos size: {sizeof_fmt(total_size_videos)}")

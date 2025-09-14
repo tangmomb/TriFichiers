@@ -64,7 +64,7 @@ for i, (name, info) in enumerate(SCRIPTS.items()):
 layout = [
     [sg.Column(layout_scroll, size=(350, 520), scrollable=True, vertical_scroll_only=True)],
     [sg.Button("Quitter", button_color=("white", "firebrick4"), size=(12,1))]
-]
+    ]
 
 # --- Créer la fenêtre ---
 window = sg.Window("Launcher", layout, size=(350, 580), resizable=True, finalize=True, element_justification="left", location=(1000, 100))

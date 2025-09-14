@@ -4,6 +4,7 @@ import glob
 import send2trash
 import numpy as np
 from tqdm import tqdm
+import FreeSimpleGUI as sg
 
 def get_image_files(folder):
     extensions = ('*.jpg', '*.jpeg', '*.png', '*.bmp', '*.gif', '*.webp')
@@ -26,7 +27,7 @@ def resize_with_padding(img, size=1000):
 def show_image_with_controls(image_path):
     img = cv2.imread(image_path)
     if img is None:
-        print(f"Impossible de lire {image_path}")
+        sg.popup(f"Impossible de lire {image_path}")
         return 'error'
 
     display_img = resize_with_padding(img, size=1000)
@@ -48,14 +49,14 @@ def show_image_with_controls(image_path):
             return 'keep'
 
 def main():
-    folder = input("Entrez le chemin du dossier contenant les photos : ").strip()
+    folder = sg.popup_get_text("Entrez le chemin du dossier contenant les photos : ").strip()
     if not os.path.isdir(folder):
-        print("Chemin invalide.")
+        sg.popup("Chemin invalide.")
         return
 
     image_files = get_image_files(folder)
     total_files = len(image_files)
-    print(f"{total_files} photos trouvées.")
+    sg.popup(f"{total_files} photos trouvées.\nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter")
 
     with tqdm(total=total_files, desc="Progression", unit="photo") as pbar:
         for image_path in image_files:
