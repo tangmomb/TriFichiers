@@ -38,12 +38,11 @@ def main():
     images = [f for f in os.listdir(source_dir) if f.lower().endswith(valid_ext)]
 
     if not images:
-        print("Aucune image trouvée dans le dossier.")
+        sg.popup("Aucune image trouvée dans le dossier.")
         return
 
     total_images = len(images)
-    print(f"{total_images} images trouvées.")
-    print("Contrôles : [ESPACE] = Déplacer, [A] = Suivant, [Q] = Quitter")
+    sg.popup(f"{total_images} images trouvées. \nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[Q] = Quitter")
 
     cv2.namedWindow('Image Viewer', cv2.WINDOW_NORMAL)
     cv2.resizeWindow('Image Viewer', 1000, 1000)
