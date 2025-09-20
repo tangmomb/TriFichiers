@@ -49,7 +49,7 @@ SCRIPTS = {
 
 # --- Construire le layout ---
 layout_scroll = [
-    [sg.Text("📂 Lanceur de scripts", font=("Poppins", 18, "bold"), justification="left", expand_x=True)],
+    [sg.Text("📂 Tri Photos/Vidéos", font=("Poppins", 18, "bold"), justification="left", expand_x=True)],
     [sg.Text("Choisissez une action :", font=("Poppins", 12), pad=(0,10))]
 ]
 
