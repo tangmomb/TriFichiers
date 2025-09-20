@@ -3,6 +3,7 @@ import hashlib
 from tqdm import tqdm
 from send2trash import send2trash
 import FreeSimpleGUI as sg
+from LocationInterface import POPUP_LOCATION
 
 def hash_fichier(path, chunk_size=8192):
     """Retourne le hash SHA256 du fichier (lecture par blocs)"""
@@ -49,10 +50,10 @@ def supprimer_doublons(dossier):
                 total += 1
             except Exception as e:
                 print(f"❌ Erreur suppression : {fichier} — {e}")
-    sg.popup(f"\n✅ {total} doublons envoyés à la corbeille.")
+    sg.popup(f"\n✅ {total} doublons envoyés à la corbeille.", location=POPUP_LOCATION)
 
 if __name__ == "__main__":
-    chemin = sg.popup_get_text("📁 Dossier à scanner pour doublons : ").strip()
+    chemin = sg.popup_get_folder("📁 Dossier à scanner pour doublons :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
     if not os.path.exists(chemin):
         print("❌ Chemin invalide.")
     else:

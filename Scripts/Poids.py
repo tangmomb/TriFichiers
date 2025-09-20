@@ -1,8 +1,9 @@
 import os
 import FreeSimpleGUI as sg
+from LocationInterface import POPUP_LOCATION
 
 # Dossier à analyser
-FOLDER_PATH = sg.popup_get_text("Entrez le chemin du dossier à analyser : ").strip()
+FOLDER_PATH = sg.popup_get_folder("Entrez le chemin du dossier à analyser :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
 
 # Extensions des fichiers images et vidéos (en minuscules)
 IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
@@ -33,5 +34,5 @@ def sizeof_fmt(num, suffix='B'):
         num /= 1024.0
     return f"{num:.2f} Pi{suffix}"
 
-sg.popup(f"Total images size: {sizeof_fmt(total_size_images)}")
-sg.popup(f"Total videos size: {sizeof_fmt(total_size_videos)}")
+sg.popup(f"Total images size: {sizeof_fmt(total_size_images)}", location=POPUP_LOCATION)
+sg.popup(f"Total videos size: {sizeof_fmt(total_size_videos)}", location=POPUP_LOCATION)

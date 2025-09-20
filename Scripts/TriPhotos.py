@@ -5,6 +5,7 @@ import send2trash
 import numpy as np
 from tqdm import tqdm
 import FreeSimpleGUI as sg
+from LocationInterface import POPUP_LOCATION
 
 def get_image_files(folder):
     extensions = ('*.jpg', '*.jpeg', '*.png', '*.bmp', '*.gif', '*.webp')
@@ -27,7 +28,7 @@ def resize_with_padding(img, size=1000):
 def show_image_with_controls(image_path):
     img = cv2.imread(image_path)
     if img is None:
-        sg.popup(f"Impossible de lire {image_path}")
+        sg.popup(f"Impossible de lire {image_path}", location=POPUP_LOCATION)
         return 'error'
 
     display_img = resize_with_padding(img, size=1000)
@@ -49,14 +50,14 @@ def show_image_with_controls(image_path):
             return 'keep'
 
 def main():
-    folder = sg.popup_get_text("Entrez le chemin du dossier contenant les photos : ").strip()
+    folder = sg.popup_get_folder("Entrez le chemin du dossier contenant les photos :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
     if not os.path.isdir(folder):
-        sg.popup("Chemin invalide.")
+        sg.popup("Chemin invalide.", location=POPUP_LOCATION)
         return
 
     image_files = get_image_files(folder)
     total_files = len(image_files)
-    sg.popup(f"{total_files} photos trouvées.\nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter")
+    sg.popup(f"{total_files} photos trouvées.\nContrôles : [ESPACE] = Corbeille, [A] = Suivant, \n[ESC] = Quitter", location=POPUP_LOCATION)
 
     with tqdm(total=total_files, desc="Progression", unit="photo") as pbar:
         for image_path in image_files:

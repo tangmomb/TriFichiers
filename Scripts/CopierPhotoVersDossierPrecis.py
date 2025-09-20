@@ -4,6 +4,7 @@ import shutil
 import numpy as np
 from tqdm import tqdm
 import FreeSimpleGUI as sg
+from LocationInterface import POPUP_LOCATION
 
 def resize_with_padding(img, size=1000):
     h, w = img.shape[:2]
@@ -24,25 +25,25 @@ def resize_with_padding(img, size=1000):
     return canvas
 
 def main():
-    source_dir = sg.popup_get_text("Chemin du dossier contenant les images :")
-    dest_dir = sg.popup_get_text("Chemin du dossier de destination :")
+    source_dir = sg.popup_get_folder("Chemin du dossier contenant les images :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
+    dest_dir = sg.popup_get_folder("Chemin du dossier de destination :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
 
     if not os.path.isdir(source_dir):
-        sg.popup("Erreur : le dossier source n'existe pas.")
+        sg.popup("Erreur : le dossier source n'existe pas.", location=POPUP_LOCATION)
         return
     if not os.path.isdir(dest_dir):
-        sg.popup("Le dossier de destination n'existe pas, création...")
+        sg.popup("Le dossier de destination n'existe pas, création...", location=POPUP_LOCATION)
         os.makedirs(dest_dir)
 
     valid_ext = ('.jpg', '.jpeg', '.png', '.bmp', '.gif', '.webp')
     images = [f for f in os.listdir(source_dir) if f.lower().endswith(valid_ext)]
 
     if not images:
-        sg.popup("Aucune image trouvée dans le dossier.")
+        sg.popup("Aucune image trouvée dans le dossier.", location=POPUP_LOCATION)
         return
 
     total_images = len(images)
-    sg.popup(f"{total_images} images trouvées. \nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter")
+    sg.popup(f"{total_images} images trouvées. \nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter", location=POPUP_LOCATION)
 
     cv2.namedWindow('Image Viewer', cv2.WINDOW_NORMAL)
     cv2.resizeWindow('Image Viewer', 1000, 1000)
@@ -78,7 +79,7 @@ def main():
             pbar.update(1)
 
     cv2.destroyAllWindows()
-    sg.popup("Toutes les images ont été affichées.")
+    sg.popup("Toutes les images ont été affichées.", location=POPUP_LOCATION)
 
 if __name__ == "__main__":
     main()

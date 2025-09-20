@@ -3,6 +3,7 @@ import cv2
 import glob
 import send2trash
 import FreeSimpleGUI as sg
+from LocationInterface import POPUP_LOCATION
 
 def get_video_files(folder):
     extensions = ('*.mp4', '*.mov', '*.avi', '*.mkv')
@@ -62,13 +63,13 @@ def play_video_with_controls(video_path):
     return 'keep'
 
 def main():
-    folder = sg.popup_get_text("Entrez le chemin du dossier contenant les vidéos : ").strip()
+    folder = sg.popup_get_folder("Entrez le chemin du dossier contenant les vidéos :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
     if not os.path.isdir(folder):
-        sg.popup("Chemin invalide.")
+        sg.popup("Chemin invalide.", location=POPUP_LOCATION)
         return
 
     video_files = get_video_files(folder)
-    sg.popup(f"{len(video_files)} vidéos trouvées.\nContrôles : [ESPACE] = Déplacer, [A] = Suivant, \n[ESC] = Quitter")
+    sg.popup(f"{len(video_files)} vidéos trouvées.\nContrôles : [ESPACE] = Corbeille, [A] = Suivant, \n[ESC] = Quitter", location=POPUP_LOCATION)
 
     for video_path in video_files:
         print(f"\nLecture de : {os.path.basename(video_path)}")

@@ -1,6 +1,7 @@
 import os
 import shutil
 import FreeSimpleGUI as sg
+from LocationInterface import POPUP_LOCATION
 
 def ensure_dir_exists(path):
     folder = os.path.dirname(path)
@@ -84,9 +85,9 @@ def flatten_and_categorize(root_folder):
         try:
             os.rmdir(dirpath)
         except OSError as e:
-            sg.popup(f"Impossible de supprimer {dirpath}: {e}")
+            sg.popup(f"Impossible de supprimer {dirpath}: {e}", location=POPUP_LOCATION)
 
 if __name__ == "__main__":
-    folder_to_flatten = sg.popup_get_text("Entrez le chemin du dossier à analyser : ").strip()
+    folder_to_flatten = sg.popup_get_folder("Entrez le chemin du dossier à analyser :\nexemple : C:\\Dossier", location=POPUP_LOCATION)
     flatten_and_categorize(folder_to_flatten)
-    sg.popup("Opération terminée.")
+    sg.popup("Opération terminée.", location=POPUP_LOCATION)

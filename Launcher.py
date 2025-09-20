@@ -67,7 +67,7 @@ layout = [
     ]
 
 # --- Créer la fenêtre ---
-window = sg.Window("Launcher", layout, size=(350, 580), resizable=True, finalize=True, element_justification="left", location=(1000, 100))
+window = sg.Window("Launcher", layout, size=(350, 580), resizable=True, finalize=True, element_justification="left", location=(200, 200))
 window.BringToFront()
 
 
