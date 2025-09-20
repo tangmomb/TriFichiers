@@ -1,8 +1,8 @@
-# TriVideosPhotos
+# 📸🎬 TriVideosPhotos
 
 Ce projet regroupe plusieurs scripts Python pour trier, déplacer, organiser et analyser vos photos et vidéos dans des dossiers.
 
-## Installation
+## Installation ✅
 
 1. **Installer Python 3.7 ou plus récent**
 2. **Installer les dépendances** :
@@ -13,7 +13,7 @@ Dans l'idéal, créez un envirronement et ouvrez un terminal dans le dossier du 
 pip install -r requirements.txt
 ```
 
-## Utilisation
+## Utilisation ✅
 
 Double cliquez sur `Launcher.bat` pour accéder à une interface graphique qui permet de choisir et exécuter les différents scripts :
 
@@ -32,6 +32,6 @@ Double cliquez sur `Launcher.bat` pour accéder à une interface graphique qui p
 
 - Les scripts sont accessibles via le launcher, mais peuvent aussi être lancés individuellement.
 
-## Dépendances
+## Dépendances ✅
 
 Les dépendances sont listées dans `requirements.txt` et installées automatiquement avec la commande ci-dessus.
